@@ -10,6 +10,25 @@
       </table>
  
 
+<!--
+//  #F64B07	oranzna
+//  #1D46E1	modra
+//  #FFFFFF	bela
+//  #52C86A	zelena
+//  #F4EC36	rumena
+//  #FF1110	rdeca
+-->
+
+<button ng-style="Style4" style=" width:40px; height:40px; background-color:#FFFFFF;" ng-click="pcolor($ctrl.k54, '#FFFFFF', $ctrl.tmpColor)" class="btn btn-primary btn-xs">H1</button>
+  <button ng-style="Style4" style=" width:40px; height:40px; background-color:#234567;" ng-click="pcolor($ctrl.k54, '#1D46E1', $ctrl.tmpColor)" class="btn btn-primary btn-xs">H2</button>
+   <button ng-style="Style4" style=" width:40px; height:40px; background-color:#52C86A;" ng-click="pcolor($ctrl.k54, '#52C86A', $ctrl.tmpColor)" class="btn btn-primary btn-xs">H3</button>
+
+  <p>&nbsp</p>
+ <button ng-style="Style4" style=" width:40px; height:40px; background-color:#F4EC36;" ng-click="pcolor($ctrl.k54, '#F4EC36', $ctrl.tmpColor)" class="btn btn-primary btn-xs">S1</button>
+  <button ng-style="Style4" style=" width:40px; height:40px; background-color:#F64B07;" ng-click="pcolor($ctrl.k54, '#F64B07', $ctrl.tmpColor)" class="btn btn-primary btn-xs">S2</button>
+   <button ng-style="Style4" style=" width:40px; height:40px; background-color:#FF1110;" ng-click="pcolor($ctrl.k54, '#FF1110', $ctrl.tmpColor)" class="btn btn-primary btn-xs">S3</button>
+
+
 <table>
 <!--<td bgcolor="#FFFFFF" style="line-height:10px;" colspan=3>&nbsp;</td>-->
 <td style="line-height:50px;" colspan=2>&nbsp;</td>
@@ -74,9 +93,9 @@
 
 
  <p>&nbsp</p>
- <button ng-style="Style4" style=" width:40px; height:40px;" ng-click="m1($ctrl.k00, $ctrl.k54, $ctrl.k0)" class="btn btn-primary btn-xs">M1</button>
+ <button ng-style="Style4" style=" width:40px; height:40px;" ng-click="m1($ctrl.k54, $ctrl.k00, $ctrl.k0, $ctrl.sum, $ctrl.csum)" class="btn btn-primary btn-xs">M1</button>
   <button ng-style="Style4" style=" width:40px; height:40px;" ng-click="m2($ctrl.k54, $ctrl.k55, $ctrl.k56, $ctrl.k00, $ctrl.k0, $ctrl.sum)" class="btn btn-primary btn-xs">M2</button>
-   <button ng-style="Style4" style=" width:40px; height:40px;" ng-click="m3($ctrl.k54, $ctrl.k55, $ctrl.sum, $ctrl.csum)" class="btn btn-primary btn-xs">M3</button>
+   <button ng-style="Style4" style=" width:40px; height:40px;" ng-click="m3($ctrl.k54, $ctrl.k55, $ctrl.k0, $ctrl.sum, $ctrl.csum)" class="btn btn-primary btn-xs">M3</button>
  </br>
 
 
@@ -93,7 +112,7 @@
         <table>
             <tr ng-repeat="row in $ctrl.k54 track by $index" ng-init="ind0 = $index">
                 <td ng-repeat="column in row track by $index" ng-init="ind1 = $index">
-                <button ng-style="getStyle2($ctrl.k54, ind0,ind1)" style=" width:40px; height:40px;" ng-click="nova_klavzula($ctrl.datum)" class="btn btn-primary btn-xs" ng-model="$ctrl.k54[ind0][ind1]">{{$parent.$index}}</button>
+                <button ng-style="getStyle2($ctrl.k54, ind0,ind1)" style=" width:40px; height:40px;" ng-click="cClick($ctrl.k54, ind0, ind1, $ctrl.tmpColor)" class="btn btn-primary btn-xs" ng-model="$ctrl.k54[ind0][ind1]">{{$parent.$index}}</button>
                 </td>
             </tr>
         </table>
@@ -210,6 +229,53 @@
         </table>
     </div>
  
+ 
+      <table border="1">
+        <tbody ng-repeat="phone in partnerji | filter:$ctrl.query | orderBy:$ctrl.orderProp">
+          <tr ng-style="style3" style="background-color:#50c0f4;" height="40px">
+            <td  align="right" style="width:100px;">{{phone.ID}}</td>
+            <td  align="right" style="width:100px;">{{phone.OZNAKA}}</td>
+            <td  align="right" style="width:100px;">{{phone.TEKST1}}</td>
+            <td  align="right" style="width:100px;">{{phone.TEKST2}}</td>
+            <td  align="right" style="width:100px;">{{phone.TEKST2}}</td>
+            <td  align="right" style="width:100px;">{{phone.TEKST3}}</td>
+            <td  align="right" style="width:100px;">{{phone.TEKST4}}</td>
+            <td  align="right" style="width:100px;">{{phone.TEKST5}}</td>
+            <td  align="right" style="width:100px;">{{phone.LETO}}</td>
+<td><button ng-style="style4" ng-click="get_details(phone.ID)" class="btn btn-primary btn-xs">-></button></td>
+<!--            <td align="center" style="width:100px;">{{phone.DATP.substr(6,2) + "." + phone.DATP.substr(4,2) + "." + phone.DATP.substr(0,4) }}</td>
+-->
+            <!--  <td>{{phone.IME + " (".padStart(50-phone.IME.length,".....") + phone.PART + ")"}}</td> -->
+<!--			  <td style="font-weight:bold">{{phone.IME + "..........(" + phone.PART + ")"}}</td>-->
+<!--			  <td style="width:100px;"></td>		-->
+<!--			  <td style="width:100px;"></td>		-->
+<!--			  <td align="right" style="width:100px;">{{phone.PLACILO+ " €"}}</td>-->
+			  
+            <!--	<td>{{"tt"}}</td>	-->
+            <!--	<td>{{phone.PR}}</td>	-->
+<!--
+          </tr>
+          <tr ng-repeat="pr1 in phone.PR1">
+			  <td></td>
+			  <td></td>
+            <td>{{pr1.TEKST}}</td>
+            <td align="right">{{pr1.KOLICINA  + " " +  pr1.EM}}</td>
+            
+            <td align="right">{{pr1.NCENA + " €"}}</td>
+			  <td align="right">{{pr1.ZNESEK + " €"}}</td>
+          </tr>
+-->
+        </tbody>
+        <!--
+        <li ng-repeat="phone in $ctrl.phones | filter:$ctrl.query | orderBy:$ctrl.orderProp"
+            class="thumbnail phone-list-item">
+          <a href="#!/phones/{{phone.DOKU}}" class="thumb">
+            <img ng-src="{{phone.imageUrl}}" alt="{{phone.name}}" />
+          </a>
+          <a href="#!/phones/{{phone.id}}">{{phone.name}}</a>
+          <p>{{phone.snippet}}</p>
+-->
+      </table>
  
     </div>
   </div>
